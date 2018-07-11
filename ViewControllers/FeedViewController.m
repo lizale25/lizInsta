@@ -12,6 +12,7 @@
 #import "AppDelegate.h"
 #import "LoginViewController.h"
 #import <ParseUI/ParseUI.h>
+#import "PhotoViewController.h"
 
 @interface FeedViewController () <UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -50,9 +51,19 @@
     PostTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"post" forIndexPath:indexPath];
     Post *post = self.posts[indexPath.row];
     PFUser *user = PFUser.currentUser;
+    cell.post = post;
     cell.username.text = post.author.username;
     cell.postPicture.file = post.image;
     cell.caption.text = post.caption;
+    NSDate *currentDate = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"dd.MM.YY HH:mm:ss"];
+    NSString *dateString = [dateFormatter stringFromDate:currentDate];
+    // NSLog(@"%@",dateString);
+    
+    // Adding your dateString to your content string
+    NSString *content = [NSString stringWithFormat:@"Data received from device\n \n \n \n \nData sent to Portal\n \n \n \n \nData received to Portal\n \n \n \n \nData received at %@", dateString];
+    cell.timeStamp.text = dateString;
     [cell.postPicture loadInBackground];
     return cell;
 }
@@ -96,15 +107,14 @@
 
 
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    PostTableViewCell *cell = sender;
+    PhotoViewController *control = [segue destinationViewController];
+    control.post = cell.post;
+   
 }
-*/
+
 - (IBAction)postPhoto:(id)sender {
     
     
