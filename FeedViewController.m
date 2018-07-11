@@ -49,7 +49,10 @@
     
     PostTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"post" forIndexPath:indexPath];
     Post *post = self.posts[indexPath.row];
+    PFUser *user = PFUser.currentUser;
+    cell.username.text = post.author.username;
     cell.postPicture.file = post.image;
+    cell.caption.text = post.caption;
     [cell.postPicture loadInBackground];
     return cell;
 }

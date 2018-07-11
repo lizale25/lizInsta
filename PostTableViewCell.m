@@ -25,7 +25,6 @@
     _post = post;
     PFUser *user = self.post.author;
     self.username.text = user.username;
-
     self.profilePicture.layer.cornerRadius = self.profilePicture.frame.size.width / 2;
     self.profilePicture.clipsToBounds = YES;
     

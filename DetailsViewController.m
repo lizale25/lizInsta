@@ -31,7 +31,7 @@
     
     self.detailTable.dataSource = self;
     self.detailTable.delegate = self;
-    self.detailTable.rowHeight = 400;
+    self.detailTable.rowHeight = 500;
     // Do any additional setup after loading the view.
 }
 

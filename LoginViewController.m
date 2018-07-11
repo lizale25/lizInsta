@@ -48,6 +48,7 @@
     newUser.username = self.username.text;
     //newUser.email = self.email.text;
     newUser.password = self.password.text;
+
     
     // call sign up function on the object
     [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
