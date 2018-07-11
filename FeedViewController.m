@@ -1,64 +1,68 @@
 //
-//  DetailsViewController.m
+//  FeedViewController.m
 //  lizInsta
 //
-//  Created by Lizbeth Alejandra Gonzalez on 7/10/18.
+//  Created by Lizbeth Alejandra Gonzalez on 7/9/18.
 //  Copyright © 2018 Lizbeth Alejandra Gonzalez. All rights reserved.
 //
 
-#import "DetailsViewController.h"
+#import "FeedViewController.h"
+#import "PostTableViewCell.h"
 #import "Post.h"
+#import "AppDelegate.h"
+#import "LoginViewController.h"
 #import <ParseUI/ParseUI.h>
-#import "DetailTableViewCell.h"
 
-
-@interface DetailsViewController ()  <UITableViewDelegate, UITableViewDataSource>
+@interface FeedViewController () <UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property NSArray *posts;
-@property (weak, nonatomic) IBOutlet UITableView *detailTable;
+@property (weak, nonatomic) IBOutlet UITableView *feedTableView;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 
 @end
 
-@implementation DetailsViewController
+@implementation FeedViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self. refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(beginRefresh) forControlEvents:UIControlEventValueChanged];
-    [self.detailTable insertSubview: self.refreshControl atIndex:0];
+    [self.feedTableView insertSubview: self.refreshControl atIndex:0];
+
+    self.feedTableView.dataSource = self;
+    self.feedTableView.delegate = self;
+    self.feedTableView.rowHeight = 400;
     
-    self.detailTable.dataSource = self;
-    self.detailTable.delegate = self;
-    self.detailTable.rowHeight = 400;
-    // Do any additional setup after loading the view.
+    
+    
+   // [self beginRefresh];
+  
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+
+
+// network call returns posts
+// self.posts = from network call
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    DetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"post" forIndexPath:indexPath];
+    PostTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"post" forIndexPath:indexPath];
     Post *post = self.posts[indexPath.row];
     cell.postPicture.file = post.image;
     [cell.postPicture loadInBackground];
     return cell;
-    
-
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.posts.count;
 }
 
+
 - (void)beginRefresh {
     // construct query
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
-    //    [query whereKey:@"likesCount" greaterThan:@100];
+//    [query whereKey:@"likesCount" greaterThan:@100];
     [query includeKey:@"author"];
     [query orderByDescending:@"createdAt"];
     query.limit = 20;
@@ -68,13 +72,26 @@
         if (posts != nil) {
             // do something with the array of object returned by the call
             self.posts = posts;
-            [self.detailTable reloadData];
+            [self.feedTableView reloadData];
             [self.refreshControl endRefreshing];
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
     }];
 }
+
+- (IBAction)logout:(id)sender {
+    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    appDelegate.window.rootViewController = loginViewController;
+    NSLog(@"clicked");
+    
+}
+
+
+
+
 
 /*
 #pragma mark - Navigation
@@ -85,5 +102,12 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (IBAction)postPhoto:(id)sender {
+    
+    
+    // Do any additional setup after loading the view.
+}
+
+
 
 @end
