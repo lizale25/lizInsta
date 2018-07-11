@@ -195,7 +195,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="detail" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="post" rowHeight="472" id="6l2-6Z-J5m" customClass="DetailTableViewCell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="detail" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="detail" rowHeight="472" id="6l2-6Z-J5m" customClass="DetailTableViewCell">
                                         <rect key="frame" x="0.0" y="28" width="375" height="472"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6l2-6Z-J5m" id="7CV-uz-lva">
@@ -263,7 +263,6 @@
                                             <outlet property="postPicture" destination="Bl5-cg-ggQ" id="aaH-MX-S2C"/>
                                             <outlet property="profilePicture" destination="Mbg-NZ-aZ7" id="QwZ-5m-ice"/>
                                             <outlet property="timeStamp" destination="UhQ-On-1yg" id="Td6-mB-HsK"/>
-                                            <outlet property="userName" destination="N08-1o-gv6" id="cKL-Sf-Vo7"/>
                                             <outlet property="username" destination="N08-1o-gv6" id="bp0-R3-zHp"/>
                                         </connections>
                                     </tableViewCell>
@@ -443,7 +442,6 @@
         <image name="profile_tab" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="sdY-Gl-BBL"/>
         <segue reference="K8x-fD-lfv"/>
         <segue reference="tUk-5N-qGq"/>
     </inferredMetricsTieBreakers>
