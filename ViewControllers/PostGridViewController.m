@@ -21,7 +21,26 @@
 
 @implementation PostGridViewController
 
-
+- (void)beginRefresh {
+    // construct query
+    PFQuery *query = [PFQuery queryWithClassName:@"Post"];
+    [query whereKey:@"author" equalTo:PFUser.currentUser];
+    [query includeKey:@"author"];
+    [query orderByDescending:@"createdAt"];
+    query.limit = 20;
+    
+    // fetch data asynchronously
+    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+        if (posts != nil) {
+            // do something with the array of object returned by the call
+            self.posts = posts;
+            [self.collectionView reloadData];
+          //  [self.refreshControl endRefreshing];
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -29,10 +48,10 @@
     
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
-    PFUser *user = PFUser.currentUser;
- 
-  
+    [self beginRefresh];
     
+    PFUser *user = PFUser.currentUser;
+
     UICollectionViewFlowLayout *layout =(UICollectionViewFlowLayout *) self.collectionView.collectionViewLayout;
     layout.minimumInteritemSpacing = 5;
     layout.minimumLineSpacing = 5;
@@ -64,8 +83,7 @@
     
      ProfileCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ProfileCollectionViewCell" forIndexPath:indexPath];
     
-        Post *post = self.posts[indexPath.row];
-        PFUser *user = PFUser.currentUser;
+        Post *post = self.posts[indexPath.item];
         cell.post = post;
 
       cell.postImage.file = post.image;
@@ -77,4 +95,6 @@
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.posts.count;
 }
+
+
 @end
