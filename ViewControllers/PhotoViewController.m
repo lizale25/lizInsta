@@ -13,10 +13,11 @@
 
 @interface PhotoViewController ()
 
-@property (weak, nonatomic) IBOutlet PFImageView *postPicture;
+
 @property (weak, nonatomic) IBOutlet UILabel *caption;
 @property (weak, nonatomic) IBOutlet UILabel *username;
 @property (weak, nonatomic) IBOutlet UILabel *timeStamp;
+@property (weak, nonatomic) IBOutlet PFImageView *postPicture;
 
 
 @end
@@ -28,10 +29,17 @@
     
     PFUser *user = PFUser.currentUser;
     self.username.text = user.username;
-   // self.postPicture.file = self.post.image;
-    //self.caption.text = self.post.caption;
-   // [self.postPicture loadInBackground];
+    self.postPicture.file = self.post.image;
+    self.caption.text = self.post.caption;
+    [self.postPicture loadInBackground];
+    NSDate *currentDate = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"dd.MM.YY HH:mm:ss"];
+    NSString *dateString = [dateFormatter stringFromDate:currentDate];
+    // NSLog(@"%@",dateString);
     
+    // Adding your dateString to your content string
+    self.timeStamp.text = dateString;
    
    // [self.postPicture loadInBackground];
     // Do any additional setup after loading the view.

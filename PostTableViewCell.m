@@ -22,9 +22,15 @@
 }
 
 -(void)setPost:(Post *)post {
+   
+    NSDateFormatter *inFormat = [[NSDateFormatter alloc] init];
+    [inFormat setDateFormat:@"dd\\'MM\\'yy"];
+    
+    NSString *parsed = [inFormat stringFromDate:[NSDate date]];
     _post = post;
     PFUser *user = self.post.author;
     self.username.text = user.username;
+    self.timeStamp.text = parsed;
     self.profilePicture.layer.cornerRadius = self.profilePicture.frame.size.width / 2;
     self.profilePicture.clipsToBounds = YES;
     

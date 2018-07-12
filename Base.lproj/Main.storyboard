@@ -430,7 +430,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wzo-Mi-kWM">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wzo-Mi-kWM" customClass="PFImageView">
                                 <rect key="frame" x="0.0" y="93" width="375" height="312"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.22663475429999999" green="0.1316290004" blue="0.66666668650000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -471,7 +471,7 @@
                     </view>
                     <connections>
                         <outlet property="caption" destination="eby-Dr-bBg" id="eXU-25-V3Z"/>
-                        <outlet property="postPicture" destination="Wzo-Mi-kWM" id="vJS-mJ-rTc"/>
+                        <outlet property="postPicture" destination="Wzo-Mi-kWM" id="rD1-pM-olR"/>
                         <outlet property="timeStamp" destination="1i0-HU-yHh" id="t3N-dc-Pfw"/>
                         <outlet property="username" destination="8La-KM-wAk" id="j9H-QN-nWP"/>
                     </connections>

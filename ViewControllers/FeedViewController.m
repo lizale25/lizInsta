@@ -62,7 +62,6 @@
     // NSLog(@"%@",dateString);
     
     // Adding your dateString to your content string
-    NSString *content = [NSString stringWithFormat:@"Data received from device\n \n \n \n \nData sent to Portal\n \n \n \n \nData received to Portal\n \n \n \n \nData received at %@", dateString];
     cell.timeStamp.text = dateString;
     [cell.postPicture loadInBackground];
     return cell;
@@ -103,18 +102,14 @@
     
 }
 
-
-
-
-
-
+/*
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     PostTableViewCell *cell = sender;
     PhotoViewController *control = [segue destinationViewController];
     control.post = cell.post;
    
 }
-
+*/
 - (IBAction)postPhoto:(id)sender {
     
     
