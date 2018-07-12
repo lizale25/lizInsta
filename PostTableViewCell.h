@@ -18,5 +18,6 @@
 @property (weak, nonatomic) IBOutlet PFImageView *postPicture;
 @property (weak, nonatomic) IBOutlet UILabel *caption;
 @property (weak, nonatomic) IBOutlet UILabel *timeStamp;
+@property (weak, nonatomic) IBOutlet UILabel *usernameTwo;
 
 @end

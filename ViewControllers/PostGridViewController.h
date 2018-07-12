@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Post.h"
+#import <ParseUI/ParseUI.h>
+
 
 @interface PostGridViewController : UIViewController
-
+// any PFuser 
+@property (nonatomic, strong) Post *post;
 @end

@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Post.h"
+#import <ParseUI/ParseUI.h>
 
 @interface ProfileCollectionViewCell : UICollectionViewCell
-@property (weak, nonatomic) IBOutlet UIImageView *postImage;
+@property (weak, nonatomic) IBOutlet PFImageView *postImage;
+@property (nonatomic, strong) Post *post;
 
 @end

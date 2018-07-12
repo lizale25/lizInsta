@@ -27,14 +27,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self. refreshControl = [[UIRefreshControl alloc] init];
-    [self.refreshControl addTarget:self action:@selector(beginRefresh) forControlEvents:UIControlEventValueChanged];
-    [self.feedTableView insertSubview: self.refreshControl atIndex:0];
-
     self.feedTableView.dataSource = self;
     self.feedTableView.delegate = self;
     self.feedTableView.rowHeight = 400;
-    
+    [self beginRefresh];
+    self. refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(beginRefresh) forControlEvents:UIControlEventValueChanged];
+    [self.feedTableView insertSubview: self.refreshControl atIndex:0];
+  
     
     
    // [self beginRefresh];
@@ -53,6 +53,7 @@
     PFUser *user = PFUser.currentUser;
     cell.post = post;
     cell.username.text = post.author.username;
+    cell.usernameTwo.text = post.author.username;
     cell.postPicture.file = post.image;
     cell.caption.text = post.caption;
     NSDate *currentDate = [NSDate date];
@@ -60,6 +61,7 @@
     [dateFormatter setDateFormat:@"dd.MM.YY HH:mm:ss"];
     NSString *dateString = [dateFormatter stringFromDate:currentDate];
     // NSLog(@"%@",dateString);
+    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"small_insta"]];
     
     // Adding your dateString to your content string
     cell.timeStamp.text = dateString;

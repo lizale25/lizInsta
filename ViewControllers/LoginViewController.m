@@ -12,6 +12,7 @@
 @interface LoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *username;
 @property (weak, nonatomic) IBOutlet UITextField *password;
+@property (weak, nonatomic) IBOutlet UIButton *loginButton;
 
 @end
 
@@ -19,6 +20,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _loginButton.layer.cornerRadius = 10; // this value vary as per your desire
+    _loginButton.clipsToBounds = YES;
     // Do any additional setup after loading the view.
 }
 

@@ -30,6 +30,7 @@
     _post = post;
     PFUser *user = self.post.author;
     self.username.text = user.username;
+     self.usernameTwo.text = user.username;
     self.timeStamp.text = parsed;
     self.profilePicture.layer.cornerRadius = self.profilePicture.frame.size.width / 2;
     self.profilePicture.clipsToBounds = YES;
