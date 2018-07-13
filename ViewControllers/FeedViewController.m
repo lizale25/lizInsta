@@ -34,8 +34,6 @@
     self. refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(beginRefresh) forControlEvents:UIControlEventValueChanged];
     [self.feedTableView insertSubview: self.refreshControl atIndex:0];
-  
-    
     
    // [self beginRefresh];
   

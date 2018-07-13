@@ -19,5 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *caption;
 @property (weak, nonatomic) IBOutlet UILabel *timeStamp;
 @property (weak, nonatomic) IBOutlet UILabel *usernameTwo;
-
+@property (weak, nonatomic) IBOutlet UILabel *likeCount;
+@property (weak, nonatomic) IBOutlet UIButton *likeButton;
+@property (nonatomic, strong) NSMutableArray *likes;
 @end

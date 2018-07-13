@@ -87,6 +87,7 @@
         cell.post = post;
 
       cell.postImage.file = post.image;
+  
 
     [cell.postImage loadInBackground];
     return cell;
