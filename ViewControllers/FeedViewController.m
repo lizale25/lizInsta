@@ -24,6 +24,7 @@
 
 @implementation FeedViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -108,10 +109,5 @@
    control.post = cell.post;
     }
 }
-
-
-
-
-
 
 @end

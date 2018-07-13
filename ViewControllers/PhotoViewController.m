@@ -19,6 +19,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *timeStamp;
 @property (weak, nonatomic) IBOutlet PFImageView *postPicture;
 @property (weak, nonatomic) IBOutlet UILabel *usernameTwo;
+@property (weak, nonatomic) IBOutlet UIButton *likeButton;
+@property (nonatomic, strong) NSMutableArray *likes;
+@property (weak, nonatomic) IBOutlet UILabel *likeCount;
+@property (weak, nonatomic) IBOutlet UIImageView *profilePicture;
 
 @end
 
@@ -41,7 +45,9 @@
     
     // Adding your dateString to your content string
     self.timeStamp.text = dateString;
-   
+    self.profilePicture.layer.cornerRadius = self.profilePicture.frame.size.width / 2;
+    self.profilePicture.clipsToBounds = YES;
+    
    // [self.postPicture loadInBackground];
     // Do any additional setup after loading the view.
 }
@@ -60,5 +66,30 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (IBAction)likeAction:(id)sender {
+    self.likeCount.text = [NSString stringWithFormat:@"%@", self.post.likeCount];
+    
+    int value = [self.post.likeCount intValue];
+    if(self.likes == nil) {
+        
+        value += 1;
+        
+        self.likeCount.text = [NSString stringWithFormat:@"%d", value];
+        [self.likeButton setSelected:YES];
+        NSLog(@"Successfully favorited the following Tweet: ");
+        self.likes = [[NSMutableArray alloc] init];
+        [self.likes addObject:@"one"];
+        NSLog(@"%lu",(unsigned long)[ self.likes count]);
+    }
+    else{
+        value -= 1;;
+        [self.likeButton setSelected:NO];
+        self.likeCount.text = [NSString stringWithFormat:@"%d", value];
+        NSLog(@"Successfully unfavorited the following Tweet:");
+        self.likes = nil;
+    }
+
+    
+}
 
 @end
