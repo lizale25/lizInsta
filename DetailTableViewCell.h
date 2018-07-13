@@ -18,5 +18,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *numberLikes;
 @property (nonatomic, strong) Post *post;
 @property (weak, nonatomic) IBOutlet UILabel *timeStamp;
-
+@property (weak, nonatomic) IBOutlet UILabel *usernameTwo;
 @end

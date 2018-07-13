@@ -105,19 +105,17 @@
     
 }
 
-/*
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+   if([segue.identifier isEqualToString:@"zoom"]){
     PostTableViewCell *cell = sender;
-    PhotoViewController *control = [segue destinationViewController];
-    control.post = cell.post;
-   
+   PhotoViewController *control = [segue destinationViewController];
+   control.post = cell.post;
+    }
 }
-*/
-- (IBAction)postPhoto:(id)sender {
-    
-    
-    // Do any additional setup after loading the view.
-}
+
+
+
 
 
 

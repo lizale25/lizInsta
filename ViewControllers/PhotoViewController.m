@@ -18,7 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *username;
 @property (weak, nonatomic) IBOutlet UILabel *timeStamp;
 @property (weak, nonatomic) IBOutlet PFImageView *postPicture;
-
+@property (weak, nonatomic) IBOutlet UILabel *usernameTwo;
 
 @end
 
@@ -29,6 +29,7 @@
     
     PFUser *user = PFUser.currentUser;
     self.username.text = user.username;
+    self.usernameTwo.text = user.username;
     self.postPicture.file = self.post.image;
     self.caption.text = self.post.caption;
     [self.postPicture loadInBackground];

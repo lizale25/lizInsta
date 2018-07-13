@@ -154,8 +154,8 @@
                                             <outlet property="profilePicture" destination="vHO-bF-OzN" id="1qr-rF-oR3"/>
                                             <outlet property="timeStamp" destination="ard-eZ-vmX" id="tRn-GB-89c"/>
                                             <outlet property="username" destination="Opy-AZ-aLF" id="WzU-Lw-5wC"/>
-                                            <outlet property="usernameTwo" destination="ccC-PS-mec" id="Rt0-VH-c1G"/>
-                                            <segue destination="l7G-mb-mpJ" kind="show" id="ZMo-qs-Z49"/>
+                                            <outlet property="usernameTwo" destination="ccC-PS-mec" id="eId-bj-Cek"/>
+                                            <segue destination="l7G-mb-mpJ" kind="show" identifier="zoom" id="ZMo-qs-Z49"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -330,6 +330,14 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Screen Shot 2018-07-12 at 3.22.42 PM" translatesAutoresizingMaskIntoConstraints="NO" id="cQv-qj-FZZ">
+                                <rect key="frame" x="24" y="91" width="90" height="86"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Screen Shot 2018-07-12 at 4.47.44 PM" translatesAutoresizingMaskIntoConstraints="NO" id="2jw-HU-P4Y">
+                                <rect key="frame" x="7" y="201" width="360" height="38"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="loJ-rM-oJr"/>
@@ -441,7 +449,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Szm-Tr-IsT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="368.80000000000001" y="3384.5577211394307"/>
+            <point key="canvasLocation" x="-994" y="3437"/>
         </scene>
         <!--Photo View Controller-->
         <scene sceneID="VLg-bA-l1x">
@@ -456,13 +464,6 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.22663475429999999" green="0.1316290004" blue="0.66666668650000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Caption" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="caU-E4-o2h">
-                                <rect key="frame" x="16" y="626" width="60" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8La-KM-wAk">
                                 <rect key="frame" x="72" y="95" width="79" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -470,30 +471,44 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="SBb-K2-JJ6">
+                                <rect key="frame" x="18" y="492" width="105.5" height="14.5"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="HoV-bQ-7a0">
+                                        <rect key="frame" x="0.0" y="0.0" width="105.5" height="14.5"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p7l-Ld-fsL">
+                                                <rect key="frame" x="0.0" y="0.0" width="105.5" height="14.5"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uro-Cb-fdv">
+                                                        <rect key="frame" x="0.0" y="0.0" width="61.5" height="14.5"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Caption" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="caU-E4-o2h">
+                                                        <rect key="frame" x="61.5" y="0.0" width="44" height="14.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Screen Shot 2018-07-12 at 3.22.42 PM" translatesAutoresizingMaskIntoConstraints="NO" id="Znf-ih-Q2T">
                                 <rect key="frame" x="16" y="82" width="47" height="47"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JKb-F2-EtS">
-                                <rect key="frame" x="18" y="486" width="88" height="14.5"/>
+                                <rect key="frame" x="18" y="486" width="35" height="14.5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="goS-xq-bmt">
-                                        <rect key="frame" x="0.0" y="0.0" width="44" height="14.5"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Caption" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="deU-yq-7PZ">
-                                        <rect key="frame" x="44" y="0.0" width="44" height="14.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Time Stamp" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1i0-HU-yHh">
-                                <rect key="frame" x="18" y="544" width="58" height="12"/>
+                                <rect key="frame" x="18" y="544" width="261" height="12"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <nil key="textColor"/>
@@ -504,9 +519,11 @@
                         <viewLayoutGuide key="safeArea" id="sRE-D7-DI3"/>
                     </view>
                     <connections>
-                        <outlet property="postPicture" destination="Wzo-Mi-kWM" id="rD1-pM-olR"/>
+                        <outlet property="caption" destination="caU-E4-o2h" id="y2A-Yz-vjj"/>
+                        <outlet property="postPicture" destination="Wzo-Mi-kWM" id="gae-51-F2M"/>
                         <outlet property="timeStamp" destination="1i0-HU-yHh" id="t3N-dc-Pfw"/>
                         <outlet property="username" destination="8La-KM-wAk" id="j9H-QN-nWP"/>
+                        <outlet property="usernameTwo" destination="uro-Cb-fdv" id="7ax-rl-cEv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fdr-ta-SyA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -555,12 +572,13 @@
     <resources>
         <image name="Screen Shot 2018-07-09 at 10.55.56 PM" width="706" height="304"/>
         <image name="Screen Shot 2018-07-12 at 3.22.42 PM" width="566" height="566"/>
+        <image name="Screen Shot 2018-07-12 at 4.47.44 PM" width="632" height="46"/>
         <image name="feed_tab" width="25" height="25"/>
         <image name="insta_camera_btn" width="25" height="25"/>
         <image name="profile_tab" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="OYm-Iw-fkc"/>
-        <segue reference="ytl-Qj-UaG"/>
+        <segue reference="K8x-fD-lfv"/>
+        <segue reference="tUk-5N-qGq"/>
     </inferredMetricsTieBreakers>
 </document>
