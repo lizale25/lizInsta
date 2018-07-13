@@ -16,9 +16,10 @@
 
 @interface FeedViewController () <UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
-@property NSArray *posts;
+@property NSMutableArray *posts;
 @property (weak, nonatomic) IBOutlet UITableView *feedTableView;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
+@property (assign, nonatomic) BOOL isMoreDataLoading;
 
 @end
 
@@ -107,6 +108,47 @@
     PostTableViewCell *cell = sender;
    PhotoViewController *control = [segue destinationViewController];
    control.post = cell.post;
+    }
+}
+
+-(void)loadMoreData{
+
+        // construct query
+        PFQuery *query = [Post query];
+        //    [query whereKey:@"likesCount" greaterThan:@100];
+        [query includeKey:@"author"];
+        [query orderByDescending:@"createdAt"];
+        query.limit = 20;
+        query.skip = [self.posts count];
+        
+        // fetch data asynchronously
+        [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+            if (posts) {
+                // do something with the array of object returned by the call
+                for(Post *p in posts) {
+                    [self.posts addObject:p];
+                }
+                self.isMoreDataLoading = false;
+                [self.feedTableView reloadData];
+                [self.refreshControl endRefreshing];
+            } else {
+                NSLog(@"%@", error.localizedDescription);
+            }
+        }];
+    
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    if(!self.isMoreDataLoading){
+        // Calculate the position of one screen length before the bottom of the results
+        int scrollViewContentHeight = self.feedTableView.contentSize.height;
+        int scrollOffsetThreshold = scrollViewContentHeight - self.feedTableView.bounds.size.height;
+        
+        // When the user has scrolled past the threshold, start requesting
+        if(scrollView.contentOffset.y > scrollOffsetThreshold && self.feedTableView.isDragging) {
+            self.isMoreDataLoading = true;
+            [self loadMoreData];
+        }
     }
 }
 

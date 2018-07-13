@@ -18,6 +18,7 @@
 
 @property (nonatomic, strong) NSArray *posts;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (weak, nonatomic) IBOutlet UILabel *postCount;
 
 @end
 
