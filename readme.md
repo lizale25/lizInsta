@@ -2,7 +2,7 @@
 
 "The Real Finsta" is a photo sharing app using Parse as its backend.
 
-Time spent: **X** hours spent in total
+Time spent: 35 hours spent in total
 
 ## User Stories
 
