@@ -46,15 +46,15 @@
 
 - (IBAction)didTapFavorite:(id)sender {
     self.likeCount.text = [NSString stringWithFormat:@"%@", self.post.likeCount];
-    bool flag = NO;
+
     int value = [self.post.likeCount intValue];
     if(self.likes == nil) {
         
-         [self.likeButton setSelected:YES];
         value += 1;
+       
         self.likeCount.text = [NSString stringWithFormat:@"%d", value];
+         [self.likeButton setSelected:YES];
                     NSLog(@"Successfully favorited the following Tweet: ");
-            flag = YES;
         self.likes = [[NSMutableArray alloc] init];
         [self.likes addObject:@"one"];
         NSLog(@"%lu",(unsigned long)[ self.likes count]);
@@ -64,7 +64,6 @@
                     [self.likeButton setSelected:NO];
                     self.likeCount.text = [NSString stringWithFormat:@"%d", value];
                     NSLog(@"Successfully unfavorited the following Tweet:");
-                    flag = NO;
                     self.likes = nil;
                 }
 
