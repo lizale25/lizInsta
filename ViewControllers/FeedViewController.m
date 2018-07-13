@@ -41,8 +41,6 @@
   
 }
 
-
-
 // network call returns posts
 // self.posts = from network call
 
@@ -50,7 +48,6 @@
     
     PostTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"post" forIndexPath:indexPath];
     Post *post = self.posts[indexPath.row];
-    PFUser *user = PFUser.currentUser;
     cell.post = post;
     cell.username.text = post.author.username;
     cell.usernameTwo.text = post.author.username;
