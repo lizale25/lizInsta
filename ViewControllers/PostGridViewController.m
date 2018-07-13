@@ -14,6 +14,7 @@
 
 @interface PostGridViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *profileImage;
+@property (weak, nonatomic) IBOutlet UILabel *username;
 
 @property (nonatomic, strong) NSArray *posts;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -56,7 +57,7 @@
     UICollectionViewFlowLayout *layout =(UICollectionViewFlowLayout *) self.collectionView.collectionViewLayout;
     layout.minimumInteritemSpacing = 5;
     layout.minimumLineSpacing = 5;
-    
+     self.username.text = user.username;
     CGFloat postersPerLine = 3;
     CGFloat itemWidth = (self.collectionView.frame.size.width - layout.minimumInteritemSpacing * (postersPerLine - 1)) / postersPerLine;
     CGFloat itemHeight = itemWidth * 1.5;
