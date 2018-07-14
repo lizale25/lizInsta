@@ -11,6 +11,7 @@
 #import <ParseUI/ParseUI.h>
 
 @interface ProfileCollectionViewCell : UICollectionViewCell
+
 @property (weak, nonatomic) IBOutlet PFImageView *postImage;
 @property (nonatomic, strong) Post *post;
 

@@ -12,6 +12,7 @@
 
 
 @interface PostGridViewController : UIViewController
-// any PFuser 
+
 @property (nonatomic, strong) Post *post;
+
 @end

@@ -18,7 +18,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     ParseClientConfiguration *config = [ParseClientConfiguration   configurationWithBlock:^(id<ParseMutableClientConfiguration> configuration) {
-        
         configuration.applicationId = @"lizinsta";
         configuration.clientKey = @"MASTER_KEY";
         configuration.server = @"http:/lizinsta.herokuapp.com/parse";

@@ -37,43 +37,26 @@
     self.postPicture.file = self.post.image;
     self.caption.text = self.post.caption;
     [self.postPicture loadInBackground];
-    NSDate *currentDate = [NSDate date];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"dd.MM.YY HH:mm:ss"];
-    NSString *dateString = [dateFormatter stringFromDate:currentDate];
-    // NSLog(@"%@",dateString);
-    
-    // Adding your dateString to your content string
-    self.timeStamp.text = dateString;
     self.profilePicture.layer.cornerRadius = self.profilePicture.frame.size.width / 2;
     self.profilePicture.clipsToBounds = YES;
+    NSDate *currentDate = [NSDate date];
+    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    [format setDateFormat:@"dd.MM.YY HH:mm:ss"];
+    NSString *dateString = [format stringFromDate:currentDate];
+    self.timeStamp.text = dateString;
     
-   // [self.postPicture loadInBackground];
-    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 - (IBAction)likeAction:(id)sender {
     self.likeCount.text = [NSString stringWithFormat:@"%@", self.post.likeCount];
     
     int value = [self.post.likeCount intValue];
     if(self.likes == nil) {
-        
         value += 1;
-        
         self.likeCount.text = [NSString stringWithFormat:@"%d", value];
         [self.likeButton setSelected:YES];
         NSLog(@"Successfully favorited the following Tweet: ");
@@ -81,15 +64,14 @@
         [self.likes addObject:@"one"];
         NSLog(@"%lu",(unsigned long)[ self.likes count]);
     }
-    else{
-        value -= 1;;
+    else {
+        value -= 1;
         [self.likeButton setSelected:NO];
         self.likeCount.text = [NSString stringWithFormat:@"%d", value];
         NSLog(@"Successfully unfavorited the following Tweet:");
         self.likes = nil;
     }
 
-    
 }
 
 @end

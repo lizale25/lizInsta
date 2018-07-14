@@ -11,8 +11,8 @@
 #import <ParseUI/ParseUI.h>
 
 @interface PostTableViewCell : UITableViewCell
-@property (nonatomic, strong) Post *post;
 
+@property (nonatomic, strong) Post *post;
 @property (weak, nonatomic) IBOutlet UIImageView *profilePicture;
 @property (weak, nonatomic) IBOutlet UILabel *username;
 @property (weak, nonatomic) IBOutlet PFImageView *postPicture;
@@ -22,4 +22,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *likeCount;
 @property (weak, nonatomic) IBOutlet UIButton *likeButton;
 @property (nonatomic, strong) NSMutableArray *likes;
+
 @end

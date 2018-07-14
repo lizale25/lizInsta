@@ -37,12 +37,8 @@
     [self.refreshControl addTarget:self action:@selector(beginRefresh) forControlEvents:UIControlEventValueChanged];
     [self.feedTableView insertSubview: self.refreshControl atIndex:0];
     
-   // [self beginRefresh];
-  
 }
 
-// network call returns posts
-// self.posts = from network call
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -53,16 +49,14 @@
     cell.usernameTwo.text = post.author.username;
     cell.postPicture.file = post.image;
     cell.caption.text = post.caption;
-    NSDate *currentDate = [NSDate date];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"dd.MM.YY HH:mm:ss"];
-    NSString *dateString = [dateFormatter stringFromDate:currentDate];
-    // NSLog(@"%@",dateString);
+    NSDate *date = [NSDate date];
+    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    [format setDateFormat:@"dd.MM.YY HH:mm:ss"];
+    NSString *dateString = [format stringFromDate:date];
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"smallest"]];
-    
-    // Adding your dateString to your content string
     cell.timeStamp.text = dateString;
     [cell.postPicture loadInBackground];
+    
     return cell;
     
 }
@@ -73,21 +67,17 @@
 
 
 - (void)beginRefresh {
-    // construct query
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
-//    [query whereKey:@"likesCount" greaterThan:@100];
     [query includeKey:@"author"];
     [query orderByDescending:@"createdAt"];
     query.limit = 20;
-    
-    // fetch data asynchronously
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
-            // do something with the array of object returned by the call
             self.posts = posts;
             [self.feedTableView reloadData];
             [self.refreshControl endRefreshing];
-        } else {
+        }
+        else {
             NSLog(@"%@", error.localizedDescription);
         }
     }];
@@ -102,49 +92,43 @@
     
 }
 
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-   if([segue.identifier isEqualToString:@"zoom"]){
-    PostTableViewCell *cell = sender;
-   PhotoViewController *control = [segue destinationViewController];
-   control.post = cell.post;
+    if([segue.identifier isEqualToString:@"zoom"]){
+       PostTableViewCell *cell = sender;
+       PhotoViewController *control = [segue destinationViewController];
+       control.post = cell.post;
     }
 }
 
 -(void)loadMoreData{
-
-        // construct query
-        PFQuery *query = [Post query];
-        //    [query whereKey:@"likesCount" greaterThan:@100];
-        [query includeKey:@"author"];
-        [query orderByDescending:@"createdAt"];
-        query.limit = 20;
-        query.skip = [self.posts count];
-        
-        // fetch data asynchronously
-        [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
-            if (posts) {
-                // do something with the array of object returned by the call
-                for(Post *p in posts) {
-                    [self.posts addObject:p];
-                }
-                self.isMoreDataLoading = false;
-                [self.feedTableView reloadData];
-                [self.refreshControl endRefreshing];
-            } else {
-                NSLog(@"%@", error.localizedDescription);
-            }
-        }];
+    PFQuery *query = [Post query];
+    [query includeKey:@"author"];
+    [query orderByDescending:@"createdAt"];
+    query.limit = 20;
+    query.skip = [self.posts count];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+    
+    if (posts) {
+        for(Post *p in posts) {
+        [self.posts addObject:p];
+    }
+        self.isMoreDataLoading = false;
+        [self.feedTableView reloadData];
+        [self.refreshControl endRefreshing];
+    }
+    else {
+        NSLog(@"%@", error.localizedDescription);
+    }
+    
+    }];
     
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     if(!self.isMoreDataLoading){
-        // Calculate the position of one screen length before the bottom of the results
         int scrollViewContentHeight = self.feedTableView.contentSize.height;
         int scrollOffsetThreshold = scrollViewContentHeight - self.feedTableView.bounds.size.height;
         
-        // When the user has scrolled past the threshold, start requesting
         if(scrollView.contentOffset.y > scrollOffsetThreshold && self.feedTableView.isDragging) {
             self.isMoreDataLoading = true;
             [self loadMoreData];

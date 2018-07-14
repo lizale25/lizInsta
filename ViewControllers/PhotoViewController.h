@@ -11,5 +11,7 @@
 #import <ParseUI/ParseUI.h>
 
 @interface PhotoViewController : UIViewController
+
 @property (nonatomic, strong) Post *post;
+
 @end
