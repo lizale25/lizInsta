@@ -72,6 +72,7 @@
     cell.post = post;
     cell.postImage.file = post.image;
     [cell.postImage loadInBackground];
+    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"smallest"]];
     
     return cell;
 }
