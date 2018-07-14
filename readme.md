@@ -49,12 +49,12 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 https://i.imgur.com/Z8VsdWe.mp4
-<img src='https://i.imgur.com/Z8VsdWe.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://i.imgur.com/Z8VsdWe.gif[/img].gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Credits
-
+https://i.imgur.com/0YbtI50.gif[/img].gif
 List an 3rd party libraries, icons, graphics, or other assets you used in your app.
 
 - [AFNetworking](https://github.com/AFNetworking/AFNetworking) - networking task library
