@@ -36,7 +36,7 @@ The following **optional** features are implemented:
 The following **additional** features are implemented:
 
 - [X] I designed the posting image screen to look like that of the real Instagram, adding features such as sharing post on Facebook.
--[X] I added images to the navigation controller
+- [X] I added images to the navigation controller
 - [X] I created a Collection View in order to make the profile view page of the user look more like the real Instagram app.
 
 
